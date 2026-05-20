@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Douglas Gomes · TI que resolve problemas reais</title>
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFE;
+            color: #1A2C3E;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* Paleta baseada no currículo Notion do Douglas: tons profundos e confiáveis */
+        :root {
+            --primary-deep: #0F2B3D;
+            --primary-mid: #1E4A6F;
+            --accent-teal: #2C7A7B;
+            --accent-blue: #3182CE;
+            --gray-soft: #F1F5F9;
+            --gray-card: #FFFFFF;
+            --text-dark: #1A2C3E;
+            --text-soft: #4A5B6E;
+            --border-light: #E2EDF2;
+            --shadow-sm: 0 12px 28px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.02);
+            --shadow-hover: 0 25px 35px -12px rgba(0, 0, 0, 0.12);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        /* navbar */
+        .navbar {
+            padding: 24px 0 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .logo h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(130deg, var(--primary-deep) 0%, var(--primary-mid) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+        .logo span {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--text-soft);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* hero */
+        .hero {
+            padding: 56px 0 48px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 48px;
+        }
+        .hero-content { flex: 1; }
+        .hero-badge {
+            background: rgba(49, 130, 206, 0.12);
+            color: var(--accent-blue);
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .hero-content h2 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--primary-deep);
+            margin-bottom: 20px;
+        }
+        .hero-highlight {
+            font-size: 1.2rem;
+            color: var(--text-soft);
+            max-width: 560px;
+            margin-bottom: 28px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: var(--primary-mid);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 44px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .btn-primary:hover {
+            background: var(--primary-deep);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--primary-mid);
+            color: var(--primary-mid);
+            padding: 12px 28px;
+            border-radius: 44px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-outline:hover {
+            background: rgba(30, 74, 111, 0.05);
+            transform: translateY(-2px);
+        }
+        .hero-card {
+            flex: 0.7;
+            background: white;
+            border-radius: 32px;
+            padding: 30px 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+        .hero-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .hero-card li {
+            list-style: none;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+        .hero-card i.fa-check-circle {
+            color: var(--accent-teal);
+        }
+
+        /* títulos de seção */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-deep);
+            margin-bottom: 12px;
+        }
+        .section-sub {
+            text-align: center;
+            color: var(--text-soft);
+            max-width: 680px;
+            margin: 0 auto 56px auto;
+            font-size: 1.1rem;
+        }
+
+        /* cards de serviço com explicação amigável */
+        .services-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+        .service-block {
+            background: white;
+            border-radius: 44px;
+            padding: 32px 36px;
+            border: 1px solid var(--border-light);
+            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+        }
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .service-icon {
+            background: rgba(44, 122, 123, 0.1);
+            width: 70px;
+            height: 70px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .service-icon i {
+            font-size: 36px;
+            color: var(--accent-teal);
+        }
+        .service-header h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-deep);
+        }
+        .service-explanation {
+            background: #F9FDFF;
+            padding: 20px 24px;
+            border-radius: 28px;
+            margin-bottom: 28px;
+            border-left: 5px solid var(--accent-teal);
+        }
+        .service-explanation p {
+            font-size: 1rem;
+            color: #2d3e4f;
+            line-height: 1.5;
+        }
+        .service-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: space-between;
+        }
+        .detail-item {
+            flex: 1;
+            min-width: 180px;
+        }
+        .detail-item h4 {
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--primary-mid);
+            font-size: 1.1rem;
+        }
+        .detail-item ul {
+            list-style: none;
+        }
+        .detail-item li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .detail-item li i {
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            width: 20px;
+        }
+        .badge-simple {
+            background: #EFF6FF;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+        }
+
+        /* Consultoria especial */
+        .consultoria-especial {
+            background: linear-gradient(115deg, #EBF4FA 0%, #FFFFFF 100%);
+            border-radius: 44px;
+            padding: 44px 40px;
+            margin: 20px 0 64px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 32px;
+            border: 1px solid var(--border-light);
+        }
+        .consultoria-text h3 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--primary-deep);
+            margin-bottom: 14px;
+        }
+        .consultoria-text p {
+            font-size: 1rem;
+            color: var(--text-soft);
+            max-width: 550px;
+        }
+
+        /* Sobre + currículo */
+        .about-area {
+            background: white;
+            border-radius: 48px;
+            padding: 48px 40px;
+            margin: 20px 0 50px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px;
+            align-items: center;
+        }
+        .about-left {
+            flex: 2;
+        }
+        .about-left h3 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+        .btn-resume {
+            background: var(--primary-deep);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            margin-top: 12px;
+            transition: 0.2s;
+        }
+        .btn-resume:hover {
+            background: #0A1F2D;
+        }
+        .about-right {
+            flex: 1;
+            background: var(--gray-soft);
+            border-radius: 32px;
+            padding: 28px;
+            text-align: center;
+        }
+
+        footer {
+            background: var(--primary-deep);
+            color: #CDE1F0;
+            padding: 48px 0 28px;
+            border-radius: 48px 48px 0 0;
+            margin-top: 48px;
+        }
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 32px;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 32px;
+            margin-top: 28px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 780px) {
+            .hero-content h2 { font-size: 2.4rem; }
+            .service-header h3 { font-size: 1.7rem; }
+            .section-title { font-size: 1.9rem; }
+            .navbar { flex-direction: column; gap: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="navbar">
+        <div class="logo">
+            <h1>Douglas Gomes</h1>
+            <span>Tecnologia que faz sentido para você</span>
+        </div>
+        <div class="nav-links">
+            <a href="#servicos">Serviços</a>
+            <a href="#consultoria">Consultoria</a>
+            <a href="#sobre">Sobre</a>
+            <a href="https://www.notion.so/Douglas-Gomes-21ef88cce7e980a59984c9810fa53a72" target="_blank">Currículo</a>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge"><i class="fas fa-microchip"></i> Especialista em soluções humanizadas</div>
+            <h2>Deixe a tecnologia trabalhando <br>a seu favor</h2>
+            <div class="hero-highlight">Sem enrolação, sem jargões complicados. Eu entendo seu problema, explico de forma clara e resolvo com soluções práticas em programação, manutenção ou consultoria.</div>
+            <div class="btn-group">
+                <a href="#servicos" class="btn-primary">Ver serviços <i class="fas fa-arrow-right"></i></a>
+                <a href="https://www.notion.so/Douglas-Gomes-21ef88cce7e980a59984c9810fa53a72" target="_blank" class="btn-outline">Conheça minha trajetória</a>
+            </div>
+        </div>
+        <div class="hero-card">
+            <h3><i class="fas fa-hand-sparkles"></i> Como trabalho:</h3>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> Conversa simples e diagnóstico rápido</li>
+                <li><i class="fas fa-check-circle"></i> Transparência nos custos e prazos</li>
+                <li><i class="fas fa-check-circle"></i> Soluções que duram, sem surpresas</li>
+                <li><i class="fas fa-check-circle"></i> Suporte contínuo mesmo após o serviço</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="servicos">
+    <h2 class="section-title">Serviços que facilitam seu dia a dia</h2>
+    <p class="section-sub">Tudo explicado de forma simples, para que você entenda exatamente como posso ajudar seu negócio ou seu computador.</p>
+
+    <div class="services-flex">
+        <!-- SERVIÇO 1: Programação (explicação não técnica) -->
+        <div class="service-block">
+            <div class="service-header">
+                <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Programação & Presença Digital</h3>
+            </div>
+            <div class="service-explanation">
+                <p><strong>💡 Pra que serve isso na prática?</strong><br>
+                Ter um site ou aplicativo é como ter uma loja ou escritório aberto 24 horas por dia, 7 dias por semana. Eu crio esses espaços digitais do zero, do jeitinho que você precisa, e ainda cuido de tudo que é chato: domínio (o endereço do seu site tipo "seudominio.com"), hospedagem (o "terreno" onde o site fica) e e-mail profissional com o nome da sua empresa. Nada de códigos estranhos – você só precisa me dizer o que deseja comunicar ou vender.</p>
+            </div>
+            <div class="service-details">
+                <div class="detail-item">
+                    <h4><i class="fas fa-globe"></i> Sites e apps</h4>
+                    <ul><li><i class="fas fa-angle-right"></i> Sites institucionais, lojas virtuais</li><li><i class="fas fa-angle-right"></i> Sistemas para controle interno</li><li><i class="fas fa-angle-right"></i> Aplicativos web que funcionam em qualquer celular/PC</li></ul>
+                </div>
+                <div class="detail-item">
+                    <h4><i class="fas fa-server"></i> Domínio + Hospedagem</h4>
+                    <ul><li><i class="fas fa-angle-right"></i> Registro e configuração do seu domínio</li><li><i class="fas fa-angle-right"></i> Escolha de hospedagem rápida e segura</li><li><i class="fas fa-angle-right"></i> E-mails personalizados (contato@seudominio)</li></ul>
+                </div>
+            </div>
+            <div style="margin-top: 8px;"><span class="badge-simple"><i class="far fa-clock"></i> Entrega ágil</span> <span class="badge-simple"><i class="fas fa-chart-line"></i> Foco em resultados reais</span></div>
+        </div>
+
+        <!-- SERVIÇO 2: Equipamentos / Manutenção -->
+        <div class="service-block">
+            <div class="service-header">
+                <div class="service-icon"><i class="fas fa-desktop"></i></div>
+                <h3>Equipamentos: Notebooks & Desktops</h3>
+            </div>
+            <div class="service-explanation">
+                <p><strong>⚙️ Sem termos técnicos: </strong> Seu computador está lento, travando, demorando para ligar ou apareceu aquela mensagem estranha? Eu resolvo. Faço uma verdadeira "faxina digital" e física: desde formatar (deixar o PC zerado como novo) até trocar peças (upgrade de memória, SSD que deixa tudo mais rápido). Também alinho o sistema operacional para ele funcionar redondinho. Você volta a usar seu equipamento sem estresse.</p>
+            </div>
+            <div class="service-details">
+                <div class="detail-item">
+                    <h4><i class="fas fa-eraser"></i> Formatação e limpeza</h4>
+                    <ul><li><i class="fas fa-angle-right"></i> Remoção de vírus e arquivos desnecessários</li><li><i class="fas fa-angle-right"></i> Instalação de programas essenciais</li><li><i class="fas fa-angle-right"></i> Backup de seus documentos importantes</li></ul>
+                </div>
+                <div class="detail-item">
+                    <h4><i class="fas fa-microchip"></i> Upgrade e manutenção</h4>
+                    <ul><li><i class="fas fa-angle-right"></i> Troca por SSD (computador renasce!)</li><li><i class="fas fa-angle-right"></i> Aumento de memória RAM</li><li><i class="fas fa-angle-right"></i> Manutenção preventiva e corretiva</li></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SERVIÇO 3: Consultoria (com foco em clareza) -->
+        <div class="service-block" id="consultoria">
+            <div class="service-header">
+                <div class="service-icon"><i class="fas fa-chalkboard-user"></i></div>
+                <h3>Consultoria · Planejamento estratégico em TI</h3>
+            </div>
+            <div class="service-explanation">
+                <p><strong>🧠 O que é consultoria de tecnologia de um jeito fácil?</strong><br>
+                É como chamar um especialista para olhar sua empresa ou projeto com outros olhos. Você me conta suas dores, desafios ou objetivos, e eu avalio o cenário completo. Depois, apresento soluções claras, sem firulas, para automatizar processos, escolher os melhores equipamentos, sistemas ou até mesmo reorganizar o que já existe. O foco é economizar seu dinheiro e tempo, com passos práticos para chegar lá.</p>
+            </div>
+            <div class="service-details">
+                <div class="detail-item">
+                    <h4><i class="fas fa-search"></i> Avaliação completa</h4>
+                    <ul><li><i class="fas fa-angle-right"></i> Diagnóstico da infraestrutura atual</li><li><i class="fas fa-angle-right"></i> Mapeamento de gargalos e riscos</li></ul>
+                </div>
+                <div class="detail-item">
+                    <h4><i class="fas fa-lightbulb"></i> Geração de soluções</h4>
+                    <ul><li><i class="fas fa-angle-right"></i> Plano de ação detalhado e priorizado</li><li><i class="fas fa-angle-right"></i> Suporte na implementação (se desejar)</li></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chamada consultoria expandida -->
+    <div class="consultoria-especial">
+        <div class="consultoria-text">
+            <h3><i class="fas fa-chart-simple"></i> Cenários que merecem uma consultoria sob medida</h3>
+            <p>✔️ Sua empresa cresceu mas a tecnologia não acompanhou? ✔️ Os softwares atuais estão atrapalhando ao invés de ajudar? ✔️ Quer abrir um negócio digital mas não sabe por onde começar? <br> Eu avalio cada necessidade e entrego um relatório com soluções reais — preço justo, linguagem clara.</p>
+        </div>
+        <div>
+            <a href="#sobre" class="btn-primary" style="background: var(--accent-teal);"><i class="fas fa-calendar-week"></i> Solicitar diagnóstico</a>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="sobre">
+    <div class="about-area">
+        <div class="about-left">
+            <h3>Douglas Gomes · tecnologia humanizada</h3>
+            <p>Com anos de experiência na área, desenvolvi um método que prioriza o entendimento real do cliente. Seja para construir uma aplicação web, dar um "upgrade" no computador ou planejar a área de TI de uma empresa, meu compromisso é traduzir o mundo técnico em benefícios práticos.</p>
+            <p><i class="fas fa-check-circle" style="color: var(--accent-teal);"></i> Suporte humanizado e transparência · <i class="fas fa-check-circle" style="color: var(--accent-teal);"></i> Orçamento transparente · <i class="fas fa-check-circle" style="color: var(--accent-teal);"></i> Pós-serviço garantido</p>
+            <a href="https://www.notion.so/Douglas-Gomes-21ef88cce7e980a59984c9810fa53a72" target="_blank" class="btn-resume"><i class="fab fa-notion"></i> Acesse meu currículo completo </a>
+        </div>
+        <div class="about-right">
+            <i class="fas fa-medal" style="font-size: 2.7rem; color: var(--accent-teal); margin-bottom: 12px;"></i>
+            <h4 style="font-size: 1.6rem;">+8 anos</h4>
+            <p>resolvendo problemas com tecnologia</p>
+            <hr style="margin: 16px 0;">
+            <i class="fas fa-star" style="color:#F4B942;"></i><i class="fas fa-star" style="color:#F4B942;"></i><i class="fas fa-star" style="color:#F4B942;"></i><i class="fas fa-star" style="color:#F4B942;"></i><i class="fas fa-star" style="color:#F4B942;"></i>
+            <p>Clientes que recomendam</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h4 style="color: white; font-size: 1.5rem; margin-bottom: 8px;">Douglas Gomes</h4>
+                <p style="max-width: 260px;">Soluções em TI com explicações claras e entrega de verdade.</p>
+            </div>
+            <div>
+                <h5 style="color: white; margin-bottom: 12px;">Navegação</h5>
+                <a href="#servicos" style="display: block; color:#CDE1F0; text-decoration: none; margin-bottom: 8px;">Serviços</a>
+                <a href="#consultoria" style="display: block; color:#CDE1F0; text-decoration: none; margin-bottom: 8px;">Consultoria</a>
+                <a href="https://www.notion.so/Douglas-Gomes-21ef88cce7e980a59984c9810fa53a72" style="display: block; color:#CDE1F0; text-decoration: none; margin-bottom: 8px;" target="_blank">Currículo Notion</a>
+            </div>
+            <div>
+                <h5 style="color: white; margin-bottom: 12px;">Contato rápido</h5>
+                <p><i class="fas fa-envelope"></i> douglasgomes028@gmail.com</p>
+                <p><i class="fas fa-phone-alt"></i> (21) 98293-5769</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Douglas Gomes — Tecnologia que resolve, explicada em português claro. Baseado no currículo oficial do Notion.
+        </div>
+    </div>
+</footer>
+
+<script>
+    // suavidade nos links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if(href === "#" || href === "") return;
+            const target = document.querySelector(href);
+            if(target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+</body>
+</html>
